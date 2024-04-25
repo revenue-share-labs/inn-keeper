@@ -49,23 +49,23 @@ jobs:
           RELEASE_BRANCHES: main
           DEFAULT_BUMP: patch
 
-      - name: Update version file
-        run: echo ${{ steps.version.outputs.new_version }} > version.txt
+      # - name: Update version file
+      #   run: echo ${{ steps.version.outputs.new_version }} > version.txt
 
-      - name: Commit and push changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add version.txt
-          git commit -m "Bump version to ${{ steps.version.outputs.new_version }} in ${{ github.repository }}"
-          git push
+      # - name: Commit and push changes
+      #   run: |
+      #     git config --local user.email "action@github.com"
+      #     git config --local user.name "GitHub Action"
+      #     git add version.txt
+      #     git commit -m "Bump version to ${{ steps.version.outputs.new_version }} in ${{ github.repository }}"
+      #     git push
           
       - name: Notify Telegram on build success
         if: success()  # Этот шаг выполнится только если предыдущие шаги завершились успешно
         run: |
           curl -X POST \
             -H 'Content-Type: application/json' \
-            -d '{"chat_id": "${{ secrets.TELEGRAM_CHAT_ID }}", "text": "New version ${{ steps.bump_version.outputs.new_tag }} deployed successfully to ${{ github.repository }}!", "disable_notification": false}' \
+            -d '{"chat_id": "${{ secrets.TELEGRAM_CHAT_ID }}", "text": "New commit builded successfully to ${{ github.repository }}!", "disable_notification": false}' \
             https://api.telegram.org/bot${{ env.TELEGRAM_TOKEN }}/sendMessage
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
