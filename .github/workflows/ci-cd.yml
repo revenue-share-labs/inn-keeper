@@ -40,14 +40,14 @@ jobs:
           REACT_APP_TONCENTER_API_KEY: ${{ secrets.REACT_APP_TONCENTER_API_KEY }}
           REACT_APP_TONCENTER_TESTNET_API_KEY: ${{ secrets.REACT_APP_TONCENTER_TESTNET_API_KEY }}
 
-      - name: Bump version and push tag
-        id: version
-        uses: anothrNick/github-tag-action@1.36.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          RELEASE_BRANCHES: main
-          DEFAULT_BUMP: patch
+      # - name: Bump version and push tag
+      #   id: version
+      #   uses: anothrNick/github-tag-action@1.36.0
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     WITH_V: true
+      #     RELEASE_BRANCHES: main
+      #     DEFAULT_BUMP: patch
 
       # - name: Update version file
       #   run: echo ${{ steps.version.outputs.new_version }} > version.txt
