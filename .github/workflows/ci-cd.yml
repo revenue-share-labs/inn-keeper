@@ -1,0 +1,85 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Выполнять действия при пуше в ветку main
+
+jobs:
+  build-and-notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'  # Используйте последнюю стабильную версию Node.js
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Get commit info
+        id: commit_info
+        run: |
+          echo "COMMITTER_NAME=$(git log -1 --pretty=format:'%cn')" >> $GITHUB_ENV
+          echo "COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
+
+      - name: Notify Telegram Commit
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}  # Токен вашего бота Telegram
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}  # ID чата для уведомлений
+        run: |
+          curl -X POST \
+            -H 'Content-Type: application/json' \
+            -d '{"chat_id": "${{ env.TELEGRAM_CHAT_ID }}", "text": "Commit triggered by ${{ env.COMMITTER_NAME }}: ${{ env.COMMIT_MESSAGE }} in repository ${{ github.repository }}!", "disable_notification": false}' \
+            https://api.telegram.org/bot${{ env.TELEGRAM_TOKEN }}/sendMessage
+
+      - name: Build project
+        run: npm run build
+        env:
+          REACT_APP_TONCENTER_API_KEY: ${{ secrets.REACT_APP_TONCENTER_API_KEY }}
+          REACT_APP_TONCENTER_TESTNET_API_KEY: ${{ secrets.REACT_APP_TONCENTER_TESTNET_API_KEY }}
+
+      - name: Bump version and push tag
+        id: version
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          RELEASE_BRANCHES: main
+          DEFAULT_BUMP: minor
+
+      - name: Update version file
+        run: echo ${{ steps.version.outputs.new_version }} > version.txt
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add version.txt
+          git commit -m "Bump version to ${{ steps.version.outputs.new_version }} in ${{ github.repository }}"
+          git push
+          
+      - name: Notify Telegram on build success
+        if: success()  # Этот шаг выполнится только если предыдущие шаги завершились успешно
+        run: |
+          curl -X POST \
+            -H 'Content-Type: application/json' \
+            -d '{"chat_id": "${{ secrets.TELEGRAM_CHAT_ID }}", "text": "New version ${{ steps.bump_version.outputs.new_tag }} deployed successfully to ${{ github.repository }}!", "disable_notification": false}' \
+            https://api.telegram.org/bot${{ env.TELEGRAM_TOKEN }}/sendMessage
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: Notify Telegram on failure
+        if: failure()  # Этот шаг выполнится только если предыдущие шаги завершились неудачно
+        run: |
+          curl -X POST \
+            -H 'Content-Type: application/json' \
+            -d '{"chat_id": "${{ secrets.TELEGRAM_CHAT_ID }}", "text": "Build failed for ${{ github.repository }}. Commit by ${{ env.COMMITTER_NAME }}: ${{ env.COMMIT_MESSAGE }}", "disable_notification": false}' \
+            https://api.telegram.org/bot${{ env.TELEGRAM_TOKEN }}/sendMessage
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
