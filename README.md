@@ -1,22 +1,22 @@
-# OpenMask Browser Extension
+# InnKeeper Browser Extension
 
 [![Based on TON](https://img.shields.io/badge/Based%20on-TON-blue)](https://ton.org/)
 [![Telegram Channel](https://badgen.net/badge/follow/@OpenProduct/blue?icon=telegram)](https://t.me/openproduct)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
-OpenMask Browser Extension is a non-custodial crypto wallet and gateway to blockchain dApps.
+InnKeeper Browser Extension is a non-custodial crypto wallet and gateway to blockchain dApps.
 
 [MetaMask](https://github.com/MetaMask/metamask-extension) analog for TON (The Open Network)
 
-You can find the latest version of OpenMask on [our official website](https://openmask.app/).
+You can find the latest version of InnKeeper on [our official website](https://openmask.app/).
 
 For [general questions](https://github.com/OpenProduct/openmask-extension/discussions), [feature requests or developer questions](https://github.com/OpenProduct/openmask-extension/issues)
 
-OpenMask supports Google Chrome, and Chromium-based browsers. We recommend using the latest available browser version.
+InnKeeper supports Google Chrome, and Chromium-based browsers. We recommend using the latest available browser version.
 
 For up to the minute news, follow our [Telegram](https://t.me/openproduct)
 
-To learn how to develop OpenMask-compatible applications, visit our [Developer Docs](https://openmask.app/docs/introduction).
+To learn how to develop InnKeeper-compatible applications, visit our [Developer Docs](https://openmask.app/docs/introduction).
 
 ## Building locally
 
@@ -33,7 +33,7 @@ Compressed builds can be found in `/build` once they're built.
 
 ## Donations and rewards
 
-OpenMask TON wallet for donations and rewards:
+InnKeeper TON wallet for donations and rewards:
 
 EQCV4FC_GjwyRDx4RAfI9-f1z3Tfi6JBxEOHol8SUpI2xTxT
 

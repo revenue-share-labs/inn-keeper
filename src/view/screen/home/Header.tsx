@@ -134,7 +134,7 @@ export const Header: FC<{ lock: boolean }> = ({ lock }) => {
           src="tonmask-logo.svg"
           width="38"
           height="38"
-          alt="OpenMask Logo"
+          alt="InnKeeper Logo"
         />
         <Badge>{network}</Badge>
       </Head>
@@ -143,7 +143,7 @@ export const Header: FC<{ lock: boolean }> = ({ lock }) => {
 
   return (
     <Head>
-      <img src="tonmask-logo.svg" width="38" height="38" alt="OpenMask Logo" />
+      <img src="tonmask-logo.svg" width="38" height="38" alt="InnKeeper Logo" />
       <DropDownList
         options={networks}
         renderOption={(c) => c.name}

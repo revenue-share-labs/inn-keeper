@@ -1,5 +1,5 @@
 import { EventEmitter } from "../entries/eventEmitter";
-import { OpenMaskApiMessage } from "../entries/message";
+import { InnKeeperApiMessage } from "../entries/message";
 
 const seeIsEvent = (method: string) => {
   switch (method) {
@@ -12,7 +12,7 @@ const seeIsEvent = (method: string) => {
 };
 
 export class TonProvider extends EventEmitter {
-  isOpenMask = true;
+  isInnKeeper = true;
 
   targetOrigin = "*";
   nextJsonRpcId = 0;
@@ -26,7 +26,7 @@ export class TonProvider extends EventEmitter {
 
   constructor(ton = window.ton) {
     super();
-    if (ton && ton.isOpenMask) {
+    if (ton && ton.isInnKeeper) {
       this.nextJsonRpcId = ton.nextJsonRpcId;
       this.promises = ton.promises;
       this.callbacks = ton.callbacks;
@@ -34,8 +34,8 @@ export class TonProvider extends EventEmitter {
 
     this.isConnected().catch((e) => console.error(e));
 
-    if (ton && ton.isOpenMask) {
-      ton.destroyOpenMask();
+    if (ton && ton.isInnKeeper) {
+      ton.destroyInnKeeper();
     }
     if (ton && ton.isTonWallet) {
       ton._destroy && ton._destroy();
@@ -78,10 +78,10 @@ export class TonProvider extends EventEmitter {
       };
     });
 
-    // Send jsonrpc request to OpenMask
+    // Send jsonrpc request to InnKeeper
     window.postMessage(
       {
-        type: "OpenMaskProvider",
+        type: "InnKeeperProvider",
         message: payload,
       },
       this.targetOrigin
@@ -96,9 +96,9 @@ export class TonProvider extends EventEmitter {
       return;
     }
 
-    if (event.data.type !== "OpenMaskAPI") return;
+    if (event.data.type !== "InnKeeperAPI") return;
 
-    const data: OpenMaskApiMessage = event.data;
+    const data: InnKeeperApiMessage = event.data;
 
     // Return if not a jsonrpc response
     if (!data || !data.message || !data.message.jsonrpc) {
@@ -132,7 +132,7 @@ export class TonProvider extends EventEmitter {
   removeEventListener = this.off;
 
   _destroy() {}
-  destroyOpenMask() {
+  destroyInnKeeper() {
     window.removeEventListener("message", this.onMessage);
   }
 }

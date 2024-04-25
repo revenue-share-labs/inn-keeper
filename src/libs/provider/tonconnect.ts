@@ -1,5 +1,5 @@
 import { DeviceInfo } from "@tonconnect/protocol";
-import { OpenMaskError } from "../entries/message";
+import { InnKeeperError } from "../entries/message";
 import {
   TonConnectItemReply,
   TonConnectRequest,
@@ -42,7 +42,7 @@ function getPlatform(): DeviceInfo["platform"] {
 export const getDeviceInfo = (): DeviceInfo => {
   return {
     platform: getPlatform()!,
-    appName: "OpenMask",
+    appName: "InnKeeper",
     appVersion: packageJson.version,
     maxProtocolVersion: 2,
     features: [
@@ -161,7 +161,7 @@ export class TonConnect implements TonConnectBridge {
 
   deviceInfo: DeviceInfo = getDeviceInfo();
   walletInfo: WalletInfo = {
-    name: "OpenMask",
+    name: "InnKeeper",
     image:
       "https://raw.githubusercontent.com/OpenProduct/openmask-extension/main/public/openmask-logo-288.png",
     about_url: "https://www.openmask.app/",
@@ -213,8 +213,8 @@ export class TonConnect implements TonConnectBridge {
         return this.notify(
           formatConnectEventError(
             new TonConnectError(
-              (e as OpenMaskError).message ?? "Unknown error",
-              mapErrorCode((e as OpenMaskError).code)
+              (e as InnKeeperError).message ?? "Unknown error",
+              mapErrorCode((e as InnKeeperError).code)
             )
           )
         );

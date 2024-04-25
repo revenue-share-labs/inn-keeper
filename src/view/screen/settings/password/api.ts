@@ -6,10 +6,10 @@ import { Logger } from "../../../../libs/logger";
 import { encrypt } from "../../../../libs/service/cryptoService";
 import { delay, reEncryptWallets } from "../../../../libs/state/accountService";
 import {
+  QueryType,
   batchUpdateStore,
   getAccountState,
   getNetworkConfig,
-  QueryType,
 } from "../../../../libs/store/browserStore";
 import { getAppPassword, getWebAuthnPassword } from "../../../api";
 
@@ -42,7 +42,7 @@ declare global {
   }
 }
 
-const rpName = "OpenMask Wallet";
+const rpName = "InnKeeper Wallet";
 const userName = "wallet@openmask.app";
 
 const getHost = () => {

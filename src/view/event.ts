@@ -44,7 +44,7 @@ export const askBackground = <R>(timeout = 5000): AskProcessor<Promise<R>> => {
 };
 
 export const connectToBackground = () => {
-  port = browser.runtime.connect({ name: "OpenMaskUI" });
+  port = browser.runtime.connect({ name: "InnKeeperUI" });
 
   port.onMessage.addListener((data) => {
     uiEventEmitter.emit<any>(data.method, data);

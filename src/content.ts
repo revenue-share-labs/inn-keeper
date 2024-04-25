@@ -2,7 +2,7 @@ import browser from "webextension-polyfill";
 import { DAppMessage } from "./libs/entries/message";
 import { Logger } from "./libs/logger";
 
-const PORT_NAME = "OpenMaskContentScript";
+const PORT_NAME = "InnKeeperContentScript";
 
 injectScript();
 setupStream();
@@ -20,7 +20,7 @@ function injectScript() {
     container.insertBefore(scriptTag, container.children[0]);
     container.removeChild(scriptTag);
   } catch (error) {
-    Logger.error("OpenMask: Provider injection failed.", error);
+    Logger.error("InnKeeper: Provider injection failed.", error);
   }
 }
 
@@ -52,7 +52,7 @@ async function setupStream() {
 
   const onPageMessage = (e: PageMessage) => {
     if (!e.data) return;
-    if (e.data.type !== "OpenMaskProvider") return;
+    if (e.data.type !== "InnKeeperProvider") return;
 
     sendMessageToActivePort(e.data);
   };
@@ -84,7 +84,7 @@ async function setupStream() {
         sendMessageToActivePort(payload, true);
       } else {
         onPortMessage({
-          type: "OpenMaskAPI",
+          type: "InnKeeperAPI",
           message: {
             id: payload?.message?.id,
             method: payload?.message?.method,

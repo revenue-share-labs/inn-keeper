@@ -117,7 +117,7 @@ const DataCollectionSelect = () => {
           checked={isEnabled}
           onChange={(e) => mutate(e.target.checked)}
         />
-        Enable Data Collection to help OpenMask improve user experience
+        Enable Data Collection to help InnKeeper improve user experience
       </label>
     </>
   );

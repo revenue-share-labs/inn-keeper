@@ -15,7 +15,7 @@ import { handlePopUpConnection } from "./libs/service/backgroundPopUpService";
 import { subscriptionProxyNotifications } from "./libs/service/backgroundProxyService";
 
 browser.runtime.onConnect.addListener((port) => {
-  if (port.name === "OpenMaskUI") {
+  if (port.name === "InnKeeperUI") {
     /**
      * Subscribing to events from PopUp UI
      * The background script is a kind of backend with responsible
@@ -24,7 +24,7 @@ browser.runtime.onConnect.addListener((port) => {
     handlePopUpConnection(port);
   }
 
-  if (port.name === "OpenMaskContentScript") {
+  if (port.name === "InnKeeperContentScript") {
     /**
      * Subscribing to events from dApps
      * The background is responsible to be as a service or middleware,

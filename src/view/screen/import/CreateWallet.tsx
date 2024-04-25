@@ -72,7 +72,7 @@ export const Create = () => {
         phrase can take your crypto forever.
       </ErrorMessage>
       <Textarea disabled rows={8} value={show ? mnemonic : ""} />
-      <Text>OpenMask cannot recover your Secret Recovery Phrase.</Text>
+      <Text>InnKeeper cannot recover your Secret Recovery Phrase.</Text>
       <ButtonRow>
         <ButtonNegative
           disabled={isLoading}

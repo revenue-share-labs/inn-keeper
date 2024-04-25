@@ -41,7 +41,7 @@ export const SwitchNetwork: FC<
         <DAppBadge logo={logo} origin={origin} />
         <H1>Switch wallet network</H1>
         <Text>Allow this site to switch the network?</Text>
-        <Text>This will switch the OpenMask network:</Text>
+        <Text>This will switch the InnKeeper network:</Text>
       </Center>
       <AddressTransfer left={current} right={network} />
       <Gap />

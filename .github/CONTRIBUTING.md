@@ -1,6 +1,6 @@
-# Welcome to OpenMask!
+# Welcome to InnKeeper!
 
-If you're submitting code to OpenMask, there are some simple things we'd appreciate you doing to help us stay organized!
+If you're submitting code to InnKeeper, there are some simple things we'd appreciate you doing to help us stay organized!
 
 ### Finding the right project
 

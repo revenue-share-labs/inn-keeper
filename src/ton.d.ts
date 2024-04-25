@@ -1,7 +1,7 @@
-export {};
+export { };
 
 interface ITonProvider {
-  isOpenMask?: boolean;
+  isInnKeeper?: boolean;
   isTonWallet?: boolean;
 
   nextJsonRpcId;
@@ -15,7 +15,7 @@ interface ITonProvider {
   >;
   nextJsonRpcId: number;
   _destroy: () => void;
-  destroyOpenMask: () => void;
+  destroyInnKeeper: () => void;
 }
 
 declare global {

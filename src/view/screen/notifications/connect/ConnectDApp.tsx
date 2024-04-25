@@ -118,7 +118,7 @@ export const ConnectDApp: FC<
     <Body>
       <Center>
         <DAppBadge logo={logo} origin={origin} />
-        <H1>Connect With OpenMask</H1>
+        <H1>Connect With InnKeeper</H1>
         <Text>Select the account(s) to use on this site</Text>
       </Center>
       <Scroll>
@@ -158,7 +158,7 @@ const PermissionDescription: FC<{ permission: Permission }> = ({
       return (
         <>
           Allow to read address, account balance, activity from unlocked wallet.
-          Every time to connect OpenMask to dApp you have to put wallet
+          Every time to connect InnKeeper to dApp you have to put wallet
           password.
         </>
       );
@@ -257,7 +257,7 @@ export const ConfirmPermission: FC<ConfirmProps> = ({
     <Body>
       <Center>
         <DAppBadge logo={logo} origin={origin} />
-        <H1>Connect With OpenMask</H1>
+        <H1>Connect With InnKeeper</H1>
         <Text>Address: {addresses.map(toShortAddress).join(", ")}</Text>
         <Text>Allow this site to:</Text>
       </Center>

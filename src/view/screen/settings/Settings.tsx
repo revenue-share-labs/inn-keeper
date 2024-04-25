@@ -65,10 +65,10 @@ const AboutSettings = () => {
             src="tonmask-logo.svg"
             width="68"
             height="68"
-            alt="OpenMask Logo"
+            alt="InnKeeper Logo"
           />
         </Text>
-        <Text>OpenMask Beta version {packageJson.version}</Text>
+        <Text>InnKeeper Beta version {packageJson.version}</Text>
         <Text>Non-custodial web extension wallet for The Open Network</Text>
         <Text>Links:</Text>
         <TextLink

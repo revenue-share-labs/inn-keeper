@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { TonConnectRequest } from "../../../../libs/entries/notificationMessage";
 import { WalletState } from "../../../../libs/entries/wallet";
 import { NotificationFields } from "../../../../libs/event";
+import { FingerprintWalletLabel } from "../../../FingerprintLabel";
 import {
   Body,
   ButtonBottomRow,
@@ -18,7 +19,6 @@ import { DAppBadge } from "../../../components/DAppBadge";
 import { Dots } from "../../../components/Dots";
 import { AccountStateContext } from "../../../context";
 import { sendBackground } from "../../../event";
-import { FingerprintWalletLabel } from "../../../FingerprintLabel";
 import { formatTonValue } from "../../../utils";
 import { useBalance } from "../../home/api";
 import { useAddConnectionMutation } from "./api";
@@ -129,7 +129,7 @@ export const ConnectRequest: FC<
     <Body>
       <Center>
         <DAppBadge logo={logo} origin={origin} />
-        <H1>Ton Connect With OpenMask</H1>
+        <H1>Ton Connect With InnKeeper</H1>
         <Text>Select the account(s) to use on this site</Text>
       </Center>
       <Scroll>

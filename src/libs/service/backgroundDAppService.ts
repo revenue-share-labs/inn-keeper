@@ -16,8 +16,8 @@ import {
 import { Connections } from "../entries/connection";
 import {
   DAppMessage,
-  OpenMaskApiEvent,
-  OpenMaskApiResponse,
+  InnKeeperApiEvent,
+  InnKeeperApiResponse,
 } from "../entries/message";
 import { backgroundEventsEmitter } from "../event";
 import { ErrorCode, RuntimeError } from "../exception";
@@ -54,9 +54,9 @@ const providerResponse = (
   method: string,
   result: undefined | unknown,
   error?: RuntimeError
-): OpenMaskApiResponse => {
+): InnKeeperApiResponse => {
   return {
-    type: "OpenMaskAPI",
+    type: "InnKeeperAPI",
     message: {
       jsonrpc: "2.0",
       id,
@@ -76,9 +76,9 @@ const providerResponse = (
 const providerEvent = (
   method: "accountsChanged" | "chainChanged",
   result: undefined | unknown
-): OpenMaskApiEvent => {
+): InnKeeperApiEvent => {
   return {
-    type: "OpenMaskAPI",
+    type: "InnKeeperAPI",
     message: {
       jsonrpc: "2.0",
       method,
@@ -90,7 +90,7 @@ const providerEvent = (
 export const handleDAppConnection = (port: browser.Runtime.Port) => {
   contentScriptPorts.add(port);
   port.onMessage.addListener(async (msg, contentPort) => {
-    if (msg.type !== "OpenMaskProvider" || !msg.message) {
+    if (msg.type !== "InnKeeperProvider" || !msg.message) {
       return;
     }
 

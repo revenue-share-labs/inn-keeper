@@ -6,31 +6,31 @@ export interface DAppMessage {
   event: boolean;
 }
 
-export type OpenMaskApiMessage = OpenMaskApiResponse | OpenMaskApiEvent;
+export type InnKeeperApiMessage = InnKeeperApiResponse | InnKeeperApiEvent;
 
-export interface OpenMaskError {
+export interface InnKeeperError {
   message: string;
   code: number;
   description?: string;
 }
-export interface OpenMaskApiResponse {
-  type: "OpenMaskAPI";
+export interface InnKeeperApiResponse {
+  type: "InnKeeperAPI";
   message: {
     jsonrpc: "2.0";
     id: number;
     method: string;
     result: undefined | unknown;
-    error?: OpenMaskError;
+    error?: InnKeeperError;
   };
 }
 
-export interface OpenMaskApiEvent {
-  type: "OpenMaskAPI";
+export interface InnKeeperApiEvent {
+  type: "InnKeeperAPI";
   message: {
     jsonrpc: "2.0";
     id?: undefined;
     method: "accountsChanged" | "chainChanged";
     result: undefined | unknown;
-    error?: OpenMaskError;
+    error?: InnKeeperError;
   };
 }
