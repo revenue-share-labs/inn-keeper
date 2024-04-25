@@ -25,7 +25,6 @@ jobs:
         run: |
           echo "COMMITTER_NAME=$(git log -1 --pretty=format:'%cn')" >> $GITHUB_ENV
           echo "COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
-
       - name: Notify Telegram Commit
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}  # Токен вашего бота Telegram
@@ -35,7 +34,6 @@ jobs:
             -H 'Content-Type: application/json' \
             -d '{"chat_id": "${{ env.TELEGRAM_CHAT_ID }}", "text": "Commit triggered by ${{ env.COMMITTER_NAME }}: ${{ env.COMMIT_MESSAGE }} in repository ${{ github.repository }}!", "disable_notification": false}' \
             https://api.telegram.org/bot${{ env.TELEGRAM_TOKEN }}/sendMessage
-
       - name: Build project
         run: npm run build
         env:
@@ -49,7 +47,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
           RELEASE_BRANCHES: main
-          DEFAULT_BUMP: minor
+          DEFAULT_BUMP: patch
 
       - name: Update version file
         run: echo ${{ steps.version.outputs.new_version }} > version.txt
