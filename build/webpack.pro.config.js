@@ -37,6 +37,7 @@ const config = {
     minimize: true,
     minimizer: [
       new TerserPlugin({
+        parallel: false,
         terserOptions: {
           compress: {
             pure_funcs: ['console.log', 'console.debug'],

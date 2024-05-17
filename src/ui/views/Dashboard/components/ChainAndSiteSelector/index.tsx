@@ -290,25 +290,25 @@ export default ({
       'swap',
       'send',
       'receive',
-      'nft',
+      // 'nft',
       // 'queue',
       'transactions',
-      'gasTopUp',
-      'security',
-      'feedback',
-      'more',
+      // 'gasTopUp',
+      // 'security',
+      // 'feedback',
+      // 'more',
     ];
   } else {
     pickedPanelKeys = [
       'swap',
       'send',
       'receive',
-      'nft',
+      // 'nft',
       'transactions',
-      'gasTopUp',
-      'security',
-      'feedback',
-      'more',
+      // 'gasTopUp',
+      // 'security',
+      // 'feedback',
+      // 'more',
     ];
   }
 
@@ -385,9 +385,9 @@ export default ({
           })}
         </div>
       </div>
-      <GasPriceBar currentConnectedSiteChain={currentConnectedSiteChain} />
+      {/* <GasPriceBar currentConnectedSiteChain={currentConnectedSiteChain} /> */}
 
-      <CurrentConnection
+      {/* <CurrentConnection
         onChainChange={(chain) => {
           setCurrentConnectedSiteChain(chain);
           if (currentConnect) {
@@ -397,7 +397,7 @@ export default ({
             });
           }
         }}
-      />
+      /> */}
       <ChainSelectorModal
         className="receive-chain-select-modal"
         value={CHAINS_ENUM.ETH}
